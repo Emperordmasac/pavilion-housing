@@ -6,8 +6,10 @@ import { AiOutlineMenu } from "react-icons/ai"
 import Avatar from "@/components/avatar"
 import { Separator } from "@/components/ui/separator"
 import UserMenuItem from "@/components/navbar/user-menu-item"
+import { useRegisterModal } from "@/hooks/use-register-modal"
 
 export default function UserMenu() {
+  const registerModal = useRegisterModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
@@ -35,9 +37,12 @@ export default function UserMenu() {
       </div>
 
       {isOpen && (
-        <div className=" absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm mt-4 cursor-pointer">
-          <UserMenuItem onClick={() => {}} label="Sign up" />
-          <UserMenuItem onClick={() => {}} label="Login" />
+        <div
+          onClick={() => setIsOpen(false)}
+          className=" absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm mt-4 cursor-pointer"
+        >
+          <UserMenuItem onClick={registerModal.onOpen} label="Sign up" />
+          <UserMenuItem onClick={registerModal.onOpen} label="Login" />
           <Separator className=" my-2" />
           <UserMenuItem onClick={() => {}} label="Gift cards" />
           <UserMenuItem onClick={() => {}} label="Airnbnb your home" />

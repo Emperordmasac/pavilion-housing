@@ -5,6 +5,8 @@ import "./globals.css"
 
 import { cn } from "@/lib/utils"
 import NavBar from "@/components/navbar/navbar"
+import ModalProvider from "@/providers/modal-providers"
+import ToasterProvider from "@/providers/toaster-provider"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,6 +32,8 @@ export default function RootLayout({
         )}
       >
         <NavBar />
+        <ModalProvider />
+        <ToasterProvider />
         {children}
       </body>
     </html>

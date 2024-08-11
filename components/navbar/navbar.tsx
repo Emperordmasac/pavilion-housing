@@ -14,6 +14,7 @@ export default function NavBar() {
             <div className=" flex w-full flex-row items-center justify-between gap-3 md:gap-0">
               <Logo />
               {/* <Mode /> */}
+              {/* <Search /> */}
               <UserMenu />
             </div>
             <div className=" w-full flex items-center justify-center">
