@@ -50,6 +50,7 @@ export default function RegisterModal() {
       <CustomInput
         id="name"
         label="Name"
+        type="text"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -58,6 +59,7 @@ export default function RegisterModal() {
       <CustomInput
         id="email"
         label="Email"
+        type="email"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -66,6 +68,7 @@ export default function RegisterModal() {
       <CustomInput
         id="password"
         label="Password"
+        type="password"
         disabled={isLoading}
         register={register}
         errors={errors}
