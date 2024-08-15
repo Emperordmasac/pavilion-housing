@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import NavBar from "@/components/navbar/navbar"
 import ModalProvider from "@/providers/modal-providers"
 import ToasterProvider from "@/providers/toaster-provider"
+import getCurrentUser from "@/actions/get-current-user"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,11 +19,12 @@ export const metadata: Metadata = {
   description: "an agent housing app"
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const currentUser = await getCurrentUser()
   return (
     <html lang="en">
       <body
@@ -31,7 +33,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <NavBar />
+        <NavBar currentUser={currentUser} />
         <ModalProvider />
         <ToasterProvider />
         {children}

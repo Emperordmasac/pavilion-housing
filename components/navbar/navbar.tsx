@@ -5,7 +5,13 @@ import Container from "@/components/container"
 import Search from "@/components/navbar/search"
 import UserMenu from "@/components/navbar/user-menu"
 
-export default function NavBar() {
+import { safeUser } from "@/types"
+
+interface NavBarProps {
+  currentUser?: safeUser | null
+}
+
+export default function NavBar({ currentUser }: NavBarProps) {
   return (
     <div className=" fixed w-full bg-white z-10 shadow-sm">
       <div className=" py-4 border-b-[1px]">
@@ -15,7 +21,7 @@ export default function NavBar() {
               <Logo />
               {/* <Mode /> */}
               {/* <Search /> */}
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
             <div className=" w-full flex items-center justify-center">
               <Search />
