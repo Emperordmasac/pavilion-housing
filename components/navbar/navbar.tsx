@@ -4,6 +4,7 @@ import Logo from "@/components/navbar/logo"
 import Container from "@/components/container"
 import Search from "@/components/navbar/search"
 import UserMenu from "@/components/navbar/user-menu"
+import Categories from "@/components/navbar/categories"
 
 import { safeUser } from "@/types"
 
@@ -29,6 +30,7 @@ export default function NavBar({ currentUser }: NavBarProps) {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   )
 }

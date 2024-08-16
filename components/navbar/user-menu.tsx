@@ -54,14 +54,16 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
         >
           {currentUser ? (
             <>
-              <UserMenuItem onClick={() => {}} label="My trips" />
-              <UserMenuItem onClick={() => {}} label="My favorites" />
-              <UserMenuItem onClick={() => {}} label="My resevations" />
+              <UserMenuItem onClick={() => {}} label="Messages" />
+              <UserMenuItem onClick={() => {}} label="Notifications" />
+              <UserMenuItem onClick={() => {}} label="Trips" />
+              <UserMenuItem onClick={() => {}} label="Wishlists" />
               <Separator className=" my-2" />
-              <UserMenuItem onClick={() => {}} label="My properties" />
               <UserMenuItem onClick={() => {}} label="Airnbnb your home" />
-              <UserMenuItem onClick={() => {}} label="Help center" />
+              <UserMenuItem onClick={() => {}} label="Account" />
               <Separator className=" my-2" />
+              <UserMenuItem onClick={() => {}} label="Gift cards" />
+              <UserMenuItem onClick={() => {}} label="Help Center" />
               <UserMenuItem
                 onClick={() => {
                   signOut()
