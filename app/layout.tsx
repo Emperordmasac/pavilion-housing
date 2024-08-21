@@ -8,6 +8,7 @@ import NavBar from "@/components/navbar/navbar"
 import ModalProvider from "@/providers/modal-providers"
 import ToasterProvider from "@/providers/toaster-provider"
 import getCurrentUser from "@/actions/get-current-user"
+import ClientOnly from "@/components/client-only"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,9 +34,12 @@ export default async function RootLayout({
           fontSans.variable
         )}
       >
-        <NavBar currentUser={currentUser} />
-        <ModalProvider />
-        <ToasterProvider />
+        <ClientOnly>
+          <NavBar currentUser={currentUser} />
+          <ModalProvider />
+          <ToasterProvider />
+        </ClientOnly>
+
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
