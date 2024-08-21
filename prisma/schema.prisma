@@ -61,7 +61,7 @@ model Listing {
   userId String @db.ObjectId
 
   title         String
-  descriprion   String
+  description   String
   imageSrc      String
   category      String
   roomCount     Int

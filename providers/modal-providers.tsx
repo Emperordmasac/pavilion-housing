@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 
 import LoginModal from "@/components/modals/login-modal"
+import ListingModal from "@/components/modals/listing-modal"
 import RegisterModal from "@/components/modals/register-modal"
 
 const ModalProvider = () => {
@@ -20,6 +21,7 @@ const ModalProvider = () => {
     <>
       <RegisterModal />
       <LoginModal />
+      <ListingModal />
     </>
   )
 }

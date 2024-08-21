@@ -8,6 +8,7 @@ import { signOut } from "next-auth/react"
 import Avatar from "@/components/avatar"
 import { Separator } from "@/components/ui/separator"
 import { useLoginModal } from "@/hooks/use-login-modal"
+import { useListingModal } from "@/hooks/use-listing-modal"
 import UserMenuItem from "@/components/navbar/user-menu-item"
 import { useRegisterModal } from "@/hooks/use-register-modal"
 
@@ -20,6 +21,7 @@ interface UserMenuProps {
 export default function UserMenu({ currentUser }: UserMenuProps) {
   const loginModal = useLoginModal()
   const registerModal = useRegisterModal()
+  const listingModal = useListingModal()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -27,11 +29,17 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
     setIsOpen((value) => !value)
   }, [])
 
+  const onListing = useCallback(() => {
+    if (!currentUser) return loginModal.onOpen()
+
+    listingModal.onOpen()
+  }, [currentUser, loginModal, listingModal])
+
   return (
     <div className=" relative">
       <div className=" flex flex-row items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={onListing}
           className=" hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Airbnb your home
@@ -59,7 +67,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
               <UserMenuItem onClick={() => {}} label="Trips" />
               <UserMenuItem onClick={() => {}} label="Wishlists" />
               <Separator className=" my-2" />
-              <UserMenuItem onClick={() => {}} label="Airnbnb your home" />
+              <UserMenuItem onClick={onListing} label="Airbnb your home" />
               <UserMenuItem onClick={() => {}} label="Account" />
               <Separator className=" my-2" />
               <UserMenuItem onClick={() => {}} label="Gift cards" />
@@ -77,7 +85,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
               <UserMenuItem onClick={loginModal.onOpen} label="Login" />
               <Separator className=" my-2" />
               <UserMenuItem onClick={() => {}} label="Gift cards" />
-              <UserMenuItem onClick={() => {}} label="Airnbnb your home" />
+              <UserMenuItem onClick={() => {}} label="Airbnb your home" />
               <UserMenuItem onClick={() => {}} label="Help center" />
             </>
           )}
