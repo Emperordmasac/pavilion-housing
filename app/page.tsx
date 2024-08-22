@@ -7,9 +7,10 @@ import EmptyState from "@/components/empty-state"
 import ListingCard from "@/components/listings/listing-card"
 
 export default async function Home() {
-  const listings = await getListings()
-
-  const currentUser = await getCurrentUser()
+  const [listings, currentUser] = await Promise.all([
+    getListings(),
+    getCurrentUser()
+  ])
 
   if (listings?.length === 0) {
     return <EmptyState showReset />

@@ -1,15 +1,28 @@
 import getListingById from "@/actions/getListingById"
+import ClientOnly from "@/components/client-only"
+import EmptyState from "@/components/empty-state"
 
-interface IParams {
-  listingId: string
+interface Props {
+  params: {
+    listingId: string
+  }
+}
+const ListingPage: React.FC<Props> = async ({ params }) => {
+  const listing = await getListingById(params)
+
+  if (!listing) {
+    return (
+      <ClientOnly>
+        <EmptyState title="No listing found" subtitle="Try going back home" />
+      </ClientOnly>
+    )
+  }
+
+  return (
+    <ClientOnly>
+      <div className="pt-[58px]">{listing.title}</div>
+    </ClientOnly>
+  )
 }
 
-export default async function ListingPage({ params }: { params: IParams }) {
-  const { listingId } = params
-  console.log("🚀 ~ ListingPage :", listingId)
-
-  const listing = await getListingById(listingId)
-  console.log("🚀 ~ ListingPage ~ listing:", listing)
-
-  return <div className="pt-24">Individual page {listing?.title}</div>
-}
+export default ListingPage

@@ -4,9 +4,9 @@ interface IParams {
   listingId?: string
 }
 
-export default async function getListingById(listingId: string) {
+export default async function getListingById(params: IParams) {
   try {
-    // const { listingId } = params
+    const { listingId } = params
 
     const listing = await prisma.listing.findUnique({
       where: {
@@ -18,13 +18,13 @@ export default async function getListingById(listingId: string) {
     })
 
     if (!listing) {
-      console.error('listingId is missing')
       return null
     }
 
-    return {
+    const safeListing = {
       ...listing,
       createdAt: listing.createdAt.toISOString(),
+      updatedAt: listing.updatedAt.toISOString(),
       user: {
         ...listing.user,
         createdAt: listing.user.createdAt.toISOString(),
@@ -32,7 +32,9 @@ export default async function getListingById(listingId: string) {
         emailVerified: listing.user.emailVerified?.toISOString() || null,
       },
     }
+
+    return safeListing
   } catch (error) {
-    return null
+    throw new Error('Error')
   }
 }
