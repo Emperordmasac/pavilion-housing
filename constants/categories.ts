@@ -13,8 +13,9 @@ import {
   GiIsland,
   GiWindmill,
 } from 'react-icons/gi'
+import { categoriesInterface } from '@/types'
 
-export const categories = [
+export const categories: categoriesInterface[] = [
   {
     label: 'Beach',
     description: 'This property is close the beach',

@@ -1,3 +1,4 @@
+import { IconType } from 'react-icons'
 import { Listing, User } from '@prisma/client'
 
 export type safeListing = Omit<Listing, 'createdAt' | 'updatedAt'> & {
@@ -20,4 +21,10 @@ export type countrySelectValue = {
   latlng: number[]
   region: string
   value: string
+}
+
+export type categoriesInterface = {
+  label: string
+  description: string
+  icon: IconType
 }

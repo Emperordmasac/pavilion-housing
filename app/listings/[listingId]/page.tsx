@@ -1,6 +1,9 @@
 import getListingById from "@/actions/getListingById"
+
+import getCurrentUser from "@/actions/get-current-user"
 import ClientOnly from "@/components/client-only"
 import EmptyState from "@/components/empty-state"
+import ListingClient from "@/components/listings/listing-client"
 
 interface Props {
   params: {
@@ -8,7 +11,10 @@ interface Props {
   }
 }
 const ListingPage: React.FC<Props> = async ({ params }) => {
-  const listing = await getListingById(params)
+  const [listing, currentUser] = await Promise.all([
+    getListingById(params),
+    getCurrentUser()
+  ])
 
   if (!listing) {
     return (
@@ -20,9 +26,9 @@ const ListingPage: React.FC<Props> = async ({ params }) => {
 
   return (
     <ClientOnly>
-      <div className="pt-[58px]">{listing.title}</div>
+      <ListingClient listing={listing} currentUser={currentUser} />
     </ClientOnly>
   )
 }
-
+3
 export default ListingPage
